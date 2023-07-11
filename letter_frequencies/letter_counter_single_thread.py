@@ -2,14 +2,14 @@ import json
 from urllib.request import Request, urlopen
 import time
 
+## do with single thread to compare and check values after doing with multiple threads
+
 def count_letters(url, frequency):
     req = Request(
         url=url, 
         headers={'User-Agent': 'Mozilla/5.0'}
     )
-    #response = urllib.request.urlopen(url)
     txt = str(urlopen(req).read())
-    #txt = str(response.read())
     for l in txt: 
         letter = l.lower()
         if letter in frequency:
