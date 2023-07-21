@@ -22,6 +22,8 @@ class WaitGroup:
 
     def wait(self):
         self.cv.acquire()
+        # use greater than zero condition as there might be a case where we are notifying that all the threads are done,
+        # however just before our thread is woken up another thread comes in and adds more work to the wait group
         while self.wait_count > 0:
-            self.cv.wait()
+            self.cv.wait() # waits here till notified
         self.cv.release()
